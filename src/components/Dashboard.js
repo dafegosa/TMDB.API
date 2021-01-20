@@ -3,7 +3,9 @@ import Header from './Header'
 import SearchForm from './SearchForm'
 import { Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { initiateGetResult } from '../actions/result'
+import { initiateGetResult, initiateLoadMoreAlbums } from '../actions/result'
+import Loader from './Loader'
+
 const Dashboard = (props) => {
   const dispatch = useDispatch()
   const [Loading, setLoading] = useState(false)
@@ -32,6 +34,7 @@ const Dashboard = (props) => {
       </div>
 
       <SearchForm handleSearch={handleSearch} />
+      <Loader show={Loading}>Buscando...</Loader>
     </div>
   )
 }

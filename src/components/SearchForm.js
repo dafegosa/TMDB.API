@@ -3,21 +3,40 @@ import { Form, Button } from 'react-bootstrap'
 
 const SearchForm = (props) => {
   const [searchMe, setSearchMe] = useState('')
-  const [errorMsg, setErrorMsg] = useState('')
+  const [errorMsg, setErrorMsg] = useState(false)
   const handleSearch = (e) => {
     e.preventDefault()
 
     if (searchMe.trim() !== '') {
-      setErrorMsg('')
       props.handleSearch(searchMe)
     } else {
-      setErrorMsg('Please enter a search term.')
+      setErrorMsg(true)
     }
   }
   return (
     <div>
       <Form onSubmit={handleSearch}>
-        {/* <p className='errorMsg'>This is the SearchForm</p> */}
+        {errorMsg ? (
+          <p className='errorMsg'>
+            No podemos saber qué estás buscando{' '}
+            <i
+              style={{ fontSize: '1rem' }}
+              class='em em-confused'
+              aria-role='presentation'
+              aria-label='CONFUSED FACE'
+            ></i>
+            . <br />
+            Ingresa una palabra relacionada con lo que buscas e ¡intentalo de
+            nuevo!{' '}
+            <i
+              style={{ fontSize: '1rem' }}
+              class='em em-white_check_mark'
+              aria-role='presentation'
+              aria-label='WHITE HEAVY CHECK MARK'
+            ></i>
+            .
+          </p>
+        ) : null}
         <Form.Group controlId='formBasicEmail'>
           <Form.Label style={{ color: '#fce0a2' }}>
             ¿Qué estás buscando?
@@ -26,7 +45,10 @@ const SearchForm = (props) => {
             type='search'
             name='searchTerm'
             value={searchMe}
-            onChange={(e) => setSearchMe(e.target.value)}
+            onChange={(e) => {
+              setSearchMe(e.target.value)
+              setErrorMsg(false)
+            }}
             placeholder='Buscar por album, artista o play list'
             autoComplete='off'
           />
