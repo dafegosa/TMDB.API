@@ -12,8 +12,9 @@ const AppRouter = () => {
     let expiryTimeAux
     try {
       expiryTimeAux = JSON.parse(localStorage.getItem('expiry_time'))
-    } catch (error) {
+    } catch (err) {
       expiryTimeAux = 0
+      console.error('error', err)
     }
     setEspiryTime(expiryTimeAux)
   }, [])

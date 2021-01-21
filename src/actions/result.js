@@ -45,13 +45,12 @@ export const initiateGetResult = (searchMe) => {
         searchMe
       )}&type=album,playlist,artist`
       const result = await get(API_URL)
-      console.log(result)
       const { albums, artists, playlists } = result
       dispatch(setAlbums(albums))
       dispatch(setArtists(artists))
       return dispatch(setPlayList(playlists))
-    } catch (error) {
-      console.log('error', error)
+    } catch (err) {
+      console.error('error', err)
     }
   }
 }
@@ -61,8 +60,8 @@ export const initiateLoadMoreAlbums = (url) => {
     try {
       const result = await get(url)
       return dispatch(addAlbums(result.albums))
-    } catch (error) {
-      console.log('error', error)
+    } catch (err) {
+      console.error('error', err)
     }
   }
 }
@@ -72,8 +71,8 @@ export const initiateLoadMoreArtists = (url) => {
     try {
       const result = await get(url)
       return dispatch(addArtists(result.artists))
-    } catch (error) {
-      console.log('error', error)
+    } catch (err) {
+      console.error('error', err)
     }
   }
 }
@@ -83,8 +82,8 @@ export const initiateLoadMorePlaylist = (url) => {
     try {
       const result = await get(url)
       return dispatch(addPlaylist(result.playlists))
-    } catch (error) {
-      console.log('error', error)
+    } catch (err) {
+      console.error('error', err)
     }
   }
 }

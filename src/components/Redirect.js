@@ -16,8 +16,9 @@ export const Redirect = (props) => {
       localStorage.setItem('expiry_time', expiryTime)
       setExpiryTime(expiryTime)
       history.push('/dashboard')
-    } catch (error) {
+    } catch (err) {
       history.push('/')
+      console.error('error', err)
     }
   }, [])
 
