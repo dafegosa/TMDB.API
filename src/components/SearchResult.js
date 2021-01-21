@@ -11,7 +11,13 @@ const SearchResult = (props) => {
   const albums = useSelector((state) => state.albums)
   const artists = useSelector((state) => state.artists)
   const playlist = useSelector((state) => state.playlist)
-  const { isValidSession, setCategory, selectedCategory, loadMore } = props
+  const {
+    isValidSession,
+    setCategory,
+    selectedCategory,
+    loadMore,
+    toSearch,
+  } = props
   if (!isValidSession()) {
     return (
       <Redirect
@@ -70,8 +76,8 @@ const SearchResult = (props) => {
       {albums.items ? (
         albums.items.length === 0 ? (
           <p className='alert alert-warning alert-dismissible fade show'>
-            No hemos encontrado nada relacionado a esa búsqueda. Intenta con
-            otras palabras
+            No hemos encontrado nada relacionado a {toSearch}. Intenta con otras
+            palabras
           </p>
         ) : (
           <div className='load-more' onClick={() => loadMore(selectedCategory)}>

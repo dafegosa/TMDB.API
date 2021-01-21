@@ -20,7 +20,9 @@ const Dashboard = (props) => {
   const [Loading, setLoading] = useState(false)
   const [selectedCategory, setSelectedCategory] = useState('albums')
   const { isValidSession, history } = props
+  const [toSearch, setToSearch] = useState('')
   const handleSearch = (searchMe) => {
+    setToSearch(searchMe)
     if (isValidSession()) {
       setLoading(true)
       dispatch(initiateGetResult(searchMe)).then(() => {
@@ -77,6 +79,7 @@ const Dashboard = (props) => {
       <SearchForm handleSearch={handleSearch} />
       <Loader show={Loading}>Buscando...</Loader>
       <SearchResult
+        toSearch={toSearch}
         loadMore={loadMore}
         result={result}
         setCategory={setCategory}
