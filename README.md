@@ -1,7 +1,7 @@
 ----------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------
 --
---ENLACE CON LA APLICACIÓN DESPLEGADA:  spotyapi.netlify.app
+--ENLACE CON LA APLICACIÓN DESPLEGADA:  https://spotyapi.netlify.app/
 --
 --Es necesario configurar variables de entorno:
 --
