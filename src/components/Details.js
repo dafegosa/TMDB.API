@@ -23,8 +23,8 @@ const Details = ({ info, closeInfo }) => {
             {info.type === 'artists'
               ? null
               : info.type === 'albums'
-              ? 'Artista: '
-              : 'Creador: {info.artist}'}
+              ? `Artista: ${info.artist}`
+              : `Creador: ${info.artist}`}
           </Card.Title>
           <Card.Title>
             {info.type === 'artists' ? null : info.type === 'albums' ? (

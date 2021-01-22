@@ -38,7 +38,7 @@ const SearchForm = (props) => {
           </p>
         ) : null}
         <Form.Group controlId='formBasicEmail'>
-          <Form.Label style={{ color: '#fce0a2' }}>
+          <Form.Label data-testId='testingText' style={{ color: '#fce0a2' }}>
             ¿Qué estás buscando?
           </Form.Label>
           <Form.Control

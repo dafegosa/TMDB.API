@@ -36,6 +36,7 @@ const Home = ({ isValidSession, location }) => {
             style={{ background: '#60be92', border: 'none' }}
             type='submit'
             onClick={handleLogin}
+            data-testId='loginButton'
           >
             Ingresar a Spotify
           </Button>
