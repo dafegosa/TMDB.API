@@ -30,7 +30,7 @@ const Details = ({ info, closeInfo }) => {
             {info.type === 'artists' ? null : info.type === 'albums' ? (
               `Fecha de Lanzamiento: ${info.release}`
             ) : (
-              <a href={info.release}>
+              <a href={info.release} target='_blank'>
                 Conoce el perfil de {info.artist} en Spotify
               </a>
             )}
@@ -40,7 +40,7 @@ const Details = ({ info, closeInfo }) => {
             {info.tracks}
           </Card.Title>
           <Card.Title>
-            <a href={info.url}>
+            <a href={info.url} target='_blank'>
               {' '}
               {info.type === 'artists'
                 ? `Ir al perfil de ${info.name} en Spotify`
