@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import { Card } from 'react-bootstrap'
 
 const Details = ({ info, closeInfo }) => {
-  console.log('adsdsadsadsa', info)
   return (
     <React.Fragment>
       <Card

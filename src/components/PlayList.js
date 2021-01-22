@@ -18,7 +18,7 @@ const PlayList = ({ playlist }) => {
       image = playlistSelected.images[0].url
     } else {
       image =
-        'https://pixabay.com/get/ga4a11bb5bdbb04bea17eec179891bc2e4e8acd6195be0a7dcb99354d8a60b22b4ab42bba0df7492e78790bb147c966460418e88c5bff952318e54b7e56caeb39_1920.jpg'
+        'https://res.cloudinary.com/dafegosa/image/upload/v1611283043/girl-1990347_1920_rvvdad.jpg'
     }
     setPlaylistInfo({
       artist: playlistSelected.owner.display_name,
@@ -29,9 +29,7 @@ const PlayList = ({ playlist }) => {
       url: playlistSelected.external_urls.spotify,
       type: 'playlist',
     })
-    console.log('LA PLAYLIST => ', playlist)
-    console.log('EL ID => ', itemId)
-    console.log('EL ITEM => ', playlistSelected)
+
     setShowInfo(true)
   }
   const closeInfo = () => {
@@ -70,7 +68,7 @@ const PlayList = ({ playlist }) => {
                               />
                             ) : (
                               <Card.Img
-                                src='https://pixabay.com/get/ga4a11bb5bdbb04bea17eec179891bc2e4e8acd6195be0a7dcb99354d8a60b22b4ab42bba0df7492e78790bb147c966460418e88c5bff952318e54b7e56caeb39_1920.jpg'
+                                src='https://res.cloudinary.com/dafegosa/image/upload/v1611283043/girl-1990347_1920_rvvdad.jpg'
                                 alt=''
                               />
                             )}
