@@ -1,3 +1,21 @@
+----------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------
+--
+--ENLACE CON LA APLICACIÓN DESPLEGADA:  spotyapi.netlify.app
+--
+--Es necesario configurar variables de entorno:
+--
+--AUTHORIZE_URL=https://accounts.spotify.com/authorize
+--REDIRECT_URL=http://localhost:3000/redirect
+--
+--y configurar la siguente variable de entorno con el CLIENTID proporcionado por la Spotify
+--CLIENT_ID= ***********
+--
+------------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
