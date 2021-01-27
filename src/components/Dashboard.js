@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
-import Header from './Header'
-import SearchForm from './SearchForm'
+import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import {
-  initiateGetResult,
+  initiateGetPopular,
+  initiateGetUpComing,
   initiateLoadMoreAlbums,
+  initiateGetTopRated,
   initiateLoadMorePlaylist,
   initiateLoadMoreArtists,
 } from '../actions/result'
-import Loader from './Loader'
 import SearchResult from './SearchResult'
 
 const Dashboard = (props) => {
@@ -18,73 +17,66 @@ const Dashboard = (props) => {
   const playlist = useSelector((state) => state.playlist)
   const dispatch = useDispatch()
   const [Loading, setLoading] = useState(false)
-  const [selectedCategory, setSelectedCategory] = useState('albums')
+  const [selectedCategory, setSelectedCategory] = useState('popular')
   const { isValidSession, history } = props
   const [toSearch, setToSearch] = useState('')
-  const handleSearch = (searchMe) => {
-    setToSearch(searchMe)
-    if (isValidSession()) {
-      setLoading(true)
-      dispatch(initiateGetResult(searchMe)).then(() => {
-        setLoading(false)
-        setSelectedCategory('albums')
-      })
-    } else {
-      history.push({
-        pathname: '/',
-        state: {
-          session_expired: true,
-        },
-      })
-    }
+  const [pageAlbum, setPageAlbum] = useState(2)
+  const [pageArtist, setPageArtist] = useState(2)
+  const [pagePlay, setPagePlay] = useState(2)
+  const handleSearch = async () => {
+    setLoading(true)
+    await dispatch(initiateGetPopular()).then((data) => {
+      setLoading(false)
+      setSelectedCategory('albums')
+    })
+    await dispatch(initiateGetUpComing()).then((data) => {
+      setLoading(false)
+    })
+    await dispatch(initiateGetTopRated()).then((data) => {
+      setLoading(false)
+    })
   }
-
+  useEffect(() => {
+    handleSearch()
+  }, [])
   const setCategory = (category) => {
     setSelectedCategory(category)
   }
 
   const loadMore = async (type) => {
-    if (isValidSession()) {
-      setLoading(true)
-      switch (type) {
-        case 'albums':
-          await dispatch(initiateLoadMoreAlbums(albums.next))
-          break
-        case 'artists':
-          await dispatch(initiateLoadMoreArtists(artists.next))
-          break
-        case 'playlist':
-          await dispatch(initiateLoadMorePlaylist(playlist.next))
-          break
-        default:
-      }
-      setLoading(false)
-    } else {
-      history.push({
-        pathname: '/',
-        state: {
-          session_expired: true,
-        },
-      })
+    switch (type) {
+      case 'albums':
+        pageAlbum <= 1000 ? setPageAlbum(pageAlbum + 1) : setPageAlbum(2)
+        await dispatch(initiateLoadMoreAlbums(pageAlbum))
+        break
+      case 'artists':
+        pageArtist <= 1000 ? setPageArtist(pageArtist + 1) : setPageArtist(2)
+        await dispatch(initiateLoadMoreArtists(pageArtist))
+        break
+      case 'playlist':
+        pagePlay <= 1000 ? setPagePlay(pagePlay + 1) : setPagePlay(2)
+        await dispatch(initiateLoadMorePlaylist(pagePlay))
+        break
+      default:
     }
   }
 
   const result = { albums, artists, playlist }
   return (
     <div>
-      <div className='login'>
-        <Header />
-      </div>
-
-      <SearchForm handleSearch={handleSearch} />
-      <Loader show={Loading}>Buscando...</Loader>
+      <div
+        className='login'
+        style={{
+          imgUrl:
+            'https://cdn.pixabay.com/photo/2015/05/15/09/13/demonstration-767982_1280.jpg',
+        }}
+      ></div>
       <SearchResult
         toSearch={toSearch}
         loadMore={loadMore}
         result={result}
         setCategory={setCategory}
         selectedCategory={selectedCategory}
-        isValidSession={isValidSession}
       />
     </div>
   )

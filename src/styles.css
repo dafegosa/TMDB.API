@@ -9,6 +9,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   background: rgb(41, 49, 63);
+  background-image: url(https://cdn.pixabay.com/photo/2015/05/15/09/13/demonstration-767982_1280.jpg);
   font-family: 'Montserrat', -apple-system, system-ui, BlinkMacSystemFont,
     'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 20px;

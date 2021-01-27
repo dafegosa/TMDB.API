@@ -1,6 +1,5 @@
 import puppeteer from 'puppeteer'
 import { cleanup, render } from '@testing-library/react'
-import SearchForm from './components/SearchForm'
 import Dashboard from './components/Dashboard'
 
 describe('index', () => {

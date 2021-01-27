@@ -19,34 +19,11 @@ const Details = ({ info, closeInfo }) => {
           <Card.Img variant='top' src={info.image} alt='' />
           <br />
           <br />
-          <Card.Title>
-            {info.type === 'artists'
-              ? null
-              : info.type === 'albums'
-              ? `Artista: ${info.artist}`
-              : `Creador: ${info.artist}`}
-          </Card.Title>
-          <Card.Title>
-            {info.type === 'artists' ? null : info.type === 'albums' ? (
-              `Fecha de Lanzamiento: ${info.release}`
-            ) : (
-              <a href={info.release} target='_blank'>
-                Conoce el perfil de {info.artist} en Spotify
-              </a>
-            )}
-          </Card.Title>
-          <Card.Title>
-            {info.type === 'artists' ? 'Seguidores:' : 'Número de tracks:'}{' '}
-            {info.tracks}
-          </Card.Title>
-          <Card.Title>
-            <a href={info.url} target='_blank'>
-              {' '}
-              {info.type === 'artists'
-                ? `Ir al perfil de ${info.name} en Spotify`
-                : 'Escuchar en Spotify'}
-            </a>
-          </Card.Title>
+          <Card.Title>{info.artist}</Card.Title>
+
+          <Card.Title>{info.release}</Card.Title>
+          <Card.Title>Votos: {info.tracks}</Card.Title>
+
           <Card.Text>
             <button
               className='btn btn-secondary btn-lg btn-block'
